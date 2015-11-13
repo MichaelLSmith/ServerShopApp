@@ -1,6 +1,7 @@
 var models = require('./models');
 var bodyParser = require('body-parser');
 var express = require('express');
+var PORT = require('./config/port');
 
 //initilze requirements
 var routes = require('./routes');
@@ -18,8 +19,8 @@ app.use('/api/products',product_routes);
 app.use('/api/orders',order_routes);
 
 models.sequelize.sync().then(function(){
-	app.listen(8080,function(){
-		console.log('Listening on http://127.0.0.1:8080');
+	app.listen(PORT,function(){
+		console.log('Listening on http://127.0.0.1:%s', PORT);
 		console.log('Stop Server With CTRL + C');
 	});
 })
